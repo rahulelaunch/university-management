@@ -38,29 +38,23 @@
                   <!-- <li class="menu-title">Menu</li> -->
 
                   <li>
-                      <a href="">
+                      <a href="{{route('university.dashboard')}}">
                           <i class="fas fa-tachometer-alt"></i>
                           <span>Dashboard</span>
                       </a>
                   </li>
                   <li>
-                      <a href="">
+                      <a href="{{route('university.colleges.index')}}">
                           <i class="fas fa-users"></i>
                           <span>Customer</span>
                       </a>
                   </li>
-                  <li>
+                  {{-- <li>
                       <a href="javascript: void(0);" class="has-arrow waves-effect">
                           <i class="fas fa-shopping-cart"></i>
                           <span>Stores</span>
                       </a>
-                      <ul class="sub-menu" aria-expanded="false">
-                          <li><a href="">Stores Category</a></li>
-                          <li><a href="">Stores</a></li>
-                          <li><a href="">Department</a></li>
-                          <li><a href="">Sub Department</a></li>
-                          <li><a href="">Sub Sub Department</a></li>
-                      </ul>
+                   
                   </li>
 
                   <li>
@@ -68,9 +62,9 @@
                           <i class="fas fa-box-open"></i>
                           <span>Store Product</span>
                       </a>
-                  </li>
+                  </li> --}}
 
-                  <li>
+                  {{-- <li>
                       <a href="javascript: void(0);" class="has-arrow waves-effect">
                           <i class="fas fa-map-marked-alt"></i>
                           <span>Manage Zone</span>
@@ -193,7 +187,7 @@
                           <i class="fas fa-bell"></i>
                           <span>Send Notification</span>
                       </a>
-                  </li>
+                  </li> --}}
 
                   {{-- <li>
                       <a href="javascript: void(0);" class="has-arrow waves-effect">
