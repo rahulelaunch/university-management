@@ -20,3 +20,7 @@ Route::get('/', function () {
 Route::get('university',  function(){
     return redirect()->route('university.login');
 });
+
+Route::get('college',  function(){
+    return redirect()->route('college.login');
+});

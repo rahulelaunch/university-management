@@ -14,10 +14,11 @@ Route::group(['namespace' => 'Auth'], function(){
 });
 
 Route::group(['middleware' => 'auth:university'],function (){
+    Route::get('dashboard',      [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('Profile',        [DashboardController::class, 'profile'])->name('profile');
+    Route::post('profileupdate', [DashboardController::class, 'profileupdate'])->name('profileupdate');
+    Route::get('changePassword', [DashboardController::class,'changePassword'])->name('changepassword');
+    Route::post('resetPassword', [DashboardController::class,'resetPassword'])->name('resetpassword');
 
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    // Route::get('/dashboard',     'DashboardController@index')->name('dashboard');
     Route::resource('colleges', CollegeController::class);
-
-
 });

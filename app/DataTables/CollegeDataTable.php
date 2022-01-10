@@ -8,6 +8,6 @@ class CollegeDataTable
 {
     public function get()
     {
-        return College::all();
+        return College::query()->select('colleges.*');
     }
 }

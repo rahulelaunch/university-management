@@ -6,7 +6,7 @@
             <th>Email</th>
             <th>Contct NO</th>
             <th>Address</th>
-            <th>Actions</th>
+            <th>Action</th>
         </tr>
         </thead>
         <tbody>

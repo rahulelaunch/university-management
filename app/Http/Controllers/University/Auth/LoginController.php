@@ -30,14 +30,14 @@ class LoginController extends Controller
 
     protected function attemptLogin(Request $request)
     {
-        return $this->guard()->attempt(
+        return $this->guard('university')->attempt(
             $this->credentials($request), $request->filled('remember')
         );
     }
 
     public function logout(Request $request)
     {
-        $this->guard()->logout();
+        $this->guard('university')->logout();
         return redirect()->route('university.login');
     }
 

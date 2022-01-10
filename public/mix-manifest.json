@@ -1,5 +1,10 @@
 {
     "/js/app.js": "/js/app.js",
     "/admins/js/colleges/index.js": "/admins/js/colleges/index.js",
-    "/css/app.css": "/css/app.css"
+    "/js/custom.js": "/js/custom.js",
+    "/css/app.css": "/css/app.css",
+    "/assets/js/sweetalert2.all.min.js": "/assets/js/sweetalert2.all.min.js",
+    "/assets/css/sweetalert2.css": "/assets/css/sweetalert2.css",
+    "/assets/css/iziToast.min.css": "/assets/css/iziToast.min.css",
+    "/assets/js/iziToast.min.js": "/assets/js/iziToast.min.js"
 }

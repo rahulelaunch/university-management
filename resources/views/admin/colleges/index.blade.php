@@ -1,34 +1,36 @@
 @extends('admin-layout.master')
 
 @section('title')
-    Company List
+college list
 @endsection
 @section('content')
-    <div id="content" class="main-content">
-        <div class="layout-px-spacing">
-
-            <div class="page-header">
-                <div class="page-title">
-                    <h3>Company List</h3>
-                </div>
-            </div>
-
-            <div class="row" id="cancel-row">
-                <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
-                    <div class="widget-content widget-content-area br-6">
-                        @include('admin.colleges.table')
+<div class="page-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                    <button class="btn btn-save btn-outline-primary float-right" id="addExpenses">Add College</button>
+                            <!-- <button type="button" class="btn btn-save btn-outline-primary float-right" title="Add zone"
+                                data-toggle="modal" data-target="#zone_add_modal"> + Add College</button> -->
+                 
+                        <h5>Colleges List</h5>
+                        <div class="table-responsive table-hover">
+                            @include('admin.colleges.table')
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-@endsection
-@section('admin-script')
+    @include('admin.colleges.add')
+</div>
 
-    <script>
-        console.log('qqq');
-        let csrfToken = '{{ csrf_token() }}';
-        console.log(csrfToken);
-    </script>
-    <script src="{{asset('admins/js/colleges/index.js')}}"></script>
 @endsection
+
+@push('admin-script')
+<script>
+    let csrfToken = '{{ csrf_token() }}';
+</script>
+<script src="{{asset('admins/js/colleges/index.js')}}"></script>
+@endpush

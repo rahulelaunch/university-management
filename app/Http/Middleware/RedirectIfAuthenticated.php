@@ -26,6 +26,10 @@ class RedirectIfAuthenticated
             if ($guard == 'university') {
             if (Auth::guard($guard)->check()) {
                 return redirect(RouteServiceProvider::HOME);
+            }   
+        }else if ($guard == 'college') {
+            if (Auth::guard($guard)->check()) {
+                return redirect(RouteServiceProvider::COLLEGE);
             }
         }
         }

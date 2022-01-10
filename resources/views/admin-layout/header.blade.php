@@ -53,10 +53,10 @@
                             </button>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <!-- item-->
-                                <a class="dropdown-item" href=""><i
+                                <a class="dropdown-item" href="{{ route('university.profile')}}"><i
                                         class="uil uil-user-circle font-size-18 align-middle text-muted mr-1"></i> <span
                                         class="align-middle">My Profile</span></a>
-                                <a class="dropdown-item" href=""><i
+                                <a class="dropdown-item" href="{{ route('university.changepassword')}}"><i
                                         class="uil uil-lock-alt font-size-18 align-middle text-muted mr-1"></i> <span
                                         class="align-middle">Change Password</span></a>
                                 <a class="dropdown-item" href="{{ route('university.logout') }}"
@@ -71,11 +71,7 @@
                             </div>
                         </div>
 
-                        {{-- <div class="dropdown d-inline-block">
-                            <button type="button" class="btn header-item noti-icon right-bar-toggle waves-effect">
-                                <i class="uil-cog"></i>
-                            </button>
-                        </div> --}}
+                    
 
                     </div>
                 </div>

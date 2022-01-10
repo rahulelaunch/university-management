@@ -24,7 +24,7 @@
     <body class="authentication-bg">
 
         <div class="home-btn d-none d-sm-block">
-            <a href="index.html" class="text-dark"><i class="mdi mdi-home-variant h2"></i></a>
+            <a href="{{route('university.dashboard')}}" class="text-dark"><i class="mdi mdi-home-variant h2"></i></a>
         </div>
         <div class="account-pages my-5  pt-sm-5">
             <div class="container">
@@ -33,7 +33,7 @@
                     <div class="col-md-8 col-lg-6 col-xl-5">
                         <div>
 
-                            <a href="index.html" class="mb-5 d-block auth-logo">
+                            <a href="#" class="mb-5 d-block auth-logo">
                                 <img src="assets/images/logo-dark.png" alt="" height="22" class="logo logo-dark">
                                 <img src="assets/images/logo-light.png" alt="" height="22" class="logo logo-light">
                             </a>
@@ -43,13 +43,11 @@
 
                                     <div class="text-center mt-2">
                                         <h5 class="text-primary">Admin Reset Password</h5>
-                                        {{-- <p class="text-muted">Reset Password with Minible.</p> --}}
+                                  
                                     </div>
                                     <div class="p-2 mt-4">
-                                        {{-- <div class="alert alert-success text-center mb-4" role="alert">
-                                            Enter your Email and instructions will be sent to you!
-                                        </div> --}}
-                                        <form action="{{ route('admin.resetpassword') }}" method="POST" id="changepasswordform">
+                                 
+                                        <form action="{{ route('university.resetpassword') }}" method="POST" id="changepasswordform">
                                             @csrf
                                             <div class="form-group">
                                                 <label for="useremail">Old Password</label>
@@ -91,17 +89,13 @@
                                             </div>
 
 
-                                            {{-- <div class="mt-4 text-center">
-                                                <p class="mb-0">Remember It ? <a href="auth-login.html" class="font-weight-medium text-primary"> Signin </a></p>
-                                            </div> --}}
+                                           
                                         </form>
                                     </div>
 
                                 </div>
                             </div>
-                            {{-- <div class="mt-5 text-center">
-                                <p>© 2020 Minible. Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand</p>
-                            </div> --}}
+  
                         </div>
                     </div>
                 </div>

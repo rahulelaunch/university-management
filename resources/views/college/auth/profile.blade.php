@@ -1,5 +1,5 @@
-@extends('admin-layout.master')
-<title>Micart Admin Profile | Micart Admin</title>
+@extends('college-layout.master')
+<title>College Profile | College</title>
 @section('content')
 <div class="page-content">
     <div class="container-fluid">
@@ -11,7 +11,7 @@
                             <div class="form-group row">
                                 <label for="example-text-input" class="col-sm-4 col-form-label">User-Name</label>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" name="user_name" id="" value="{{$admin->user_name}}" placeholder="User-Name" readonly>
+                                    <input type="text" class="form-control" name="user_name" id="" value="{{$admin->name}}" placeholder="User-Name" readonly>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -21,15 +21,15 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="example-text-input" class="col-sm-4 col-form-label">Full Name</label>
+                                <label for="example-text-input" class="col-sm-4 col-form-label">Contact No</label>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" name="name" id="" value="{{$admin->name}}" placeholder="Full Name">
+                                    <input type="text" class="form-control" name="contact_no" id="" value="{{$admin->contact_no}}" placeholder="Full Name">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="example-text-input" class="col-sm-4 col-form-label">Mobile No.</label>
+                                <label for="example-text-input" class="col-sm-4 col-form-label">Address</label>
                                 <div class="col-sm-6">
-                                    <input type="text" class="form-control" name="contact" id="" value="{{$admin->contact}}" placeholder="Mobile No.">
+                                <textarea id="address" name="address" class="form-control"rows="3">{{$admin->address}}</textarea>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -43,7 +43,7 @@
     </div>
 </div>
 @endsection
-@push('admin-script')
+@push('college-script')
 <script>
     $(document).ready(function () {
 
@@ -59,7 +59,7 @@
     {
     $('.text-strong').html('');
 
-    var urls='{{ route("admin.adminprofileupdate") }}';
+    var urls='{{ route("college.profileupdate") }}';
 
     $.ajax({
             headers: {

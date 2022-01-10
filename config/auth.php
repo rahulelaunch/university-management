@@ -45,6 +45,11 @@ return [
             'driver' => 'session',
             'provider' => 'universities',
         ],
+
+        'college' => [
+            'driver' => 'session',
+            'provider' => 'colleges',
+        ],
     ],
 
     /*
@@ -74,6 +79,11 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+        'colleges' => [
+            'driver' => 'eloquent',
+            'model' => \App\Models\College::class
+        ],
+
         'universities' => [
             'driver' => 'eloquent',
             'model' => \App\Models\University::class
