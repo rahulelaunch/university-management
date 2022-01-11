@@ -5,11 +5,9 @@ namespace App\Http\Controllers\University;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\University\ResetPasswordRequest;
 use App\Interfaces\UniversityDashboardInterface;
-use App\Models\College;
 use App\Models\University;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 
 class DashboardController extends Controller
 {
@@ -23,7 +21,7 @@ class DashboardController extends Controller
 
     public function index()
     {
-        $colleges = $this->dashboardRepo->profile();
+        $colleges = $this->dashboardRepo->index();
         return view('admin.index', compact('colleges'));
     }
 

@@ -1,30 +1,23 @@
 <?php
 namespace App\Repositories;
 
-use App\Interfaces\UniversityDashboardInterface;
+use App\Interfaces\CollegeDashboardInterface;
 use App\Models\College;
-use App\Models\University;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class UniversityDashboardRepository implements UniversityDashboardInterface
+class CollegeDashboardRepository implements CollegeDashboardInterface
 {
-
-    public function index()
-    {
-        return College::where('status', '1')->count();
-    }
-
 
     public function profile(){
 
-        return University::where('id',Auth::user()->id)->first();
+        return College::where('id',Auth::user()->id)->first();
     }
 
 
     public function profileupdate(array $data)
     {
-        return University::where('id',Auth::user()->id)->update([
+        return College::where('id',Auth::user()->id)->update([
             'contact_no'=>$data['contact_no'],
             'address'=>$data['address'],
                ]);
@@ -33,7 +26,7 @@ class UniversityDashboardRepository implements UniversityDashboardInterface
 
     public function resetPassword(array $data)
     {
-        $adminData = University::where('id', Auth::user()->id)->first();
+        $adminData = College::where('id', Auth::user()->id)->first();
         $data = Hash::check($data['oldpassword'], $adminData->password);
         return $data;
 

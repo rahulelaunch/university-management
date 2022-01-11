@@ -25,23 +25,13 @@ class SubjectSeeder extends Seeder
                 'status' => '1',
             ],
             [
-                'name' => 'Physics',
+                'name' => 'Science',
                 'code' => '042',
-                'status' => '1',
-            ],
-            [
-                'name' => 'Chemistry',
-                'code' => '043',
                 'status' => '1',
             ],
             [
                 'name' => 'Biology',
                 'code' => '044',
-                'status' => '1',
-            ],
-            [
-                'name' => 'Gujarati',
-                'code' => '001',
                 'status' => '1',
             ],
             [

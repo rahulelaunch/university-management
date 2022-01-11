@@ -1,14 +1,14 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
 var __webpack_exports__ = {};
-/*!****************************************!*\
-  !*** ./resources/js/colleges/index.js ***!
-  \****************************************/
+/*!***********************************************!*\
+  !*** ./resources/js/comman-settings/index.js ***!
+  \***********************************************/
 
 
 $(document).ready(function () {
-  var tablename = $('#collegeTable');
-  var url = route('university.colleges.index'); // let indexUrl;
+  var tablename = $('#commonSettingTable');
+  var url = route('university.common-Settings.index'); // let indexUrl;
 
   tablename.DataTable({
     deferRender: true,
@@ -21,27 +21,13 @@ $(document).ready(function () {
     },
     columnDefs: [],
     columns: [{
-      data: 'name',
-      name: 'name'
-    }, {
-      data: 'email',
-      name: 'email'
-    }, {
-      data: 'contact_no',
-      name: 'contact_no'
-    }, {
-      data: 'address',
-      name: 'address'
-    }, {
       data: function data(row) {
-        return "<img  class=\"rounded-circle\" src=\"".concat(row.logo, "\" height=\"50\" width=\"50\">");
+        return row.subject.name;
       },
-      name: 'logo'
+      name: 'subject.name'
     }, {
-      data: function data(row) {
-        return "<label class=\"switch\">\n                        <input data-id=\"".concat(row.id, "\" type=\"checkbox\" id=\"statusCheckBox\" ").concat(row.status == 1 ? 'checked' : '', ">\n                        <span class=\"slider round\"></span>\n                      </label>\n                        ");
-      },
-      name: 'id'
+      data: 'marks',
+      name: 'marks'
     }, {
       data: function data(_data) {
         return "\n                    \n                      <a href=\"#\" class=\"btn btn-danger\" id=\"btnDelete\" data-id=\"".concat(_data.id, "\">Delete</a>");
@@ -135,22 +121,7 @@ $(document).ready(function () {
   });
   $(document).on('click', '#btnDelete', function () {
     var id = $(this).data('id');
-    deleteItem(route('university.colleges.destroy', id), tablename, 'Collage');
-  });
-  $(document).on('click', '#statusCheckBox', function () {
-    var status = $(this).is(':checked') ? 1 : 0;
-    var id = $(this).attr('data-id');
-    $.ajax({
-      url: route('university.change-status', id),
-      type: 'POST',
-      data: {
-        'status': status
-      },
-      success: function success(result) {
-        displaySuccessMessage('Collage status changed successfully.');
-        tablename.DataTable().ajax.reload(null, false);
-      }
-    });
+    deleteItem(route('university.common-Settings.destroy', id), tablename, 'Collage');
   });
 });
 /******/ })()

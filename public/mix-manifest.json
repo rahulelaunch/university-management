@@ -1,6 +1,8 @@
 {
     "/js/app.js": "/js/app.js",
     "/admins/js/colleges/index.js": "/admins/js/colleges/index.js",
+    "/admins/js/students/index.js": "/admins/js/students/index.js",
+    "/admins/js/comman-settings/index.js": "/admins/js/comman-settings/index.js",
     "/js/custom.js": "/js/custom.js",
     "/css/app.css": "/css/app.css",
     "/assets/js/sweetalert2.all.min.js": "/assets/js/sweetalert2.all.min.js",

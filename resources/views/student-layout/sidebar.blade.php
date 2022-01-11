@@ -38,31 +38,12 @@
                   <!-- <li class="menu-title">Menu</li> -->
 
                   <li>
-                      <a href="{{route('university.dashboard')}}">
+                      <a href="{{route('student.dashboard')}}">
                           <i class="fas fa-tachometer-alt"></i>
                           <span>Dashboard</span>
                       </a>
                   </li>
-                  <li>
-                      <a href="{{route('university.colleges.index')}}">
-                          <i class="fas fa-users"></i>
-                          <span>Colleges</span>
-                      </a>
-                  </li>
-
-                  <li>
-                      <a href="{{route('university.common-Settings.index')}}">
-                          <i class="fas fa-users"></i>
-                          <span>Common setting</span>
-                      </a>
-                  </li>
-
-                  <li>
-                      <a href="{{route('university.students.index')}}">
-                          <i class="fas fa-users"></i>
-                          <span>Students</span>
-                      </a>
-                  </li>
+            
                 
               </ul>
           </div>

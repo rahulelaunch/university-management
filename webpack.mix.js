@@ -20,6 +20,8 @@ const mix = require('laravel-mix');
     'public/assets/js/iziToast.min.js');
 mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/colleges/index.js','public/admins/js/colleges/index.js')
+    .js('resources/js/students/index.js','public/admins/js/students/index.js')
+    .js('resources/js/comman-settings/index.js','public/admins/js/comman-settings/index.js')
     .js('resources/js/custom/custom.js','public/js/custom.js')
 
     .postCss('resources/css/app.css', 'public/css', [

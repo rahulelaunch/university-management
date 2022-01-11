@@ -2,15 +2,13 @@
 
 namespace App\Http\Controllers\University;
 
-use App\DataTables\CollegeDataTable;
+use App\DataTables\CommonSettingDataTable;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\University\AddCollegeRequest;
-use App\Models\College;
+use App\Models\CommonSetting;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Yajra\DataTables\Facades\DataTables;
 
-class CollegeController extends Controller
+class CommonSettingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,10 +18,10 @@ class CollegeController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()){
-            return DataTables::of((new CollegeDataTable())->get())->make(true);
+            return DataTables::of((new CommonSettingDataTable())->get())->make(true);
         }
     
-        return view('admin.colleges.index');
+        return view('admin.common-setting.index');
     }
 
     /**
@@ -42,23 +40,18 @@ class CollegeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AddCollegeRequest $request)
+    public function store(Request $request)
     {
-        $input = $request->all();
-        $input['password']=Hash::make($request->password);
-        $input['logo']=uploadFile($request->file('logo'),'college/logo');
-        $input['status']=1;
-        $college = College::create($input);
-        return $this->sendResponse($college,'College created successfully.');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\College  $college
+     * @param  \App\Models\CommonSetting  $commonSetting
      * @return \Illuminate\Http\Response
      */
-    public function show(College $college)
+    public function show(CommonSetting $commonSetting)
     {
         //
     }
@@ -66,10 +59,10 @@ class CollegeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\College  $college
+     * @param  \App\Models\CommonSetting  $commonSetting
      * @return \Illuminate\Http\Response
      */
-    public function edit(College $college)
+    public function edit(CommonSetting $commonSetting)
     {
         //
     }
@@ -78,10 +71,10 @@ class CollegeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\College  $college
+     * @param  \App\Models\CommonSetting  $commonSetting
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, College $college)
+    public function update(Request $request, CommonSetting $commonSetting)
     {
         //
     }
@@ -89,20 +82,12 @@ class CollegeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\College  $college
+     * @param  \App\Models\CommonSetting  $commonSetting
      * @return \Illuminate\Http\Response
      */
-    public function destroy(College $college)
+    public function destroy(CommonSetting $commonSetting)
     {
-        $college->delete();
+        $commonSetting->delete();
         return $this->sendSuccess('College deleted successfully');
-    }
-
-    public function changeStatus(Request $request,$id){
-        $collage = College::findOrFail($id);
-        $status = $request->status;
-        $collage->update(['status' =>$status]);
-
-        return $this->sendSuccess('Status changed successfully.');
     }
 }

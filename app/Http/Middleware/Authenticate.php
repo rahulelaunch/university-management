@@ -22,6 +22,9 @@ class Authenticate extends Middleware
         if ($request->routeIs('college.*')) {
             return route('college.login');
         }
+        if ($request->routeIs('student.*')) {
+            return route('student.login');
+        }
     }
     }
 }

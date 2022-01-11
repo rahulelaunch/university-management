@@ -24,3 +24,7 @@ Route::get('university',  function(){
 Route::get('college',  function(){
     return redirect()->route('college.login');
 });
+
+Route::get('student',  function(){
+    return redirect()->route('student.login');
+});

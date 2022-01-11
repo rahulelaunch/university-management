@@ -1,8 +1,9 @@
 'use strict';
 
 $(document).ready(function () {
-    let tablename = $('#collegeTable');
-    let url = route('university.colleges.index');
+
+    let tablename = $('#commonSettingTable');
+    let url = route('university.common-Settings.index');
     // let indexUrl;
     tablename.DataTable({
         deferRender: true,
@@ -18,38 +19,16 @@ $(document).ready(function () {
         ],
         columns: [
             {
-                data: 'name',
-                name: 'name'
-            },
-            {
-                data: 'email',
-                name: 'email'
-            },
-            {
-                data: 'contact_no',
-                name: 'contact_no'
-            },
-            {
-                data: 'address',
-                name: 'address'
-            },
-
-            {
                 data:function (row){
-                     return `<img  class="rounded-circle" src="${row.logo}" height="50" width="50">`
+                    return row.subject.name;
                 },
-                name: 'logo'
+                name:'subject.name'
             },
             {
-                data:function(row){
-                        return `<label class="switch">
-                        <input data-id="${row.id}" type="checkbox" id="statusCheckBox" ${row.status == 1 ? 'checked' : ''}>
-                        <span class="slider round"></span>
-                      </label>
-                        `;
-                },
-                name:'id',
+                data: 'marks',
+                name: 'marks'
             },
+          
             {
                 data: function (data) {
                     return `
@@ -61,6 +40,7 @@ $(document).ready(function () {
          
         ],
     });
+
 
     $(document).on('click', '#addExpenses', function () {
         $('#expenseModal').appendTo('body').modal('show');
@@ -157,20 +137,8 @@ $(document).ready(function () {
 
     $(document).on('click', '#btnDelete', function (){
         let id = $(this).data('id');
-        deleteItem(route('university.colleges.destroy',id), tablename, 'Collage');
+        deleteItem(route('university.common-Settings.destroy',id), tablename, 'Collage');
     });
 
-    $(document).on('click','#statusCheckBox', function(){
-        let status = $(this).is(':checked') ? 1 : 0;
-        let id = $(this).attr('data-id');
-        $.ajax({
-            url:route('university.change-status',id),
-            type:'POST',
-            data:{'status':status},
-            success: function(result){
-                displaySuccessMessage('Collage status changed successfully.');
-                tablename.DataTable().ajax.reload(null, false);
-            }
-        })
-    });
+  
 });
