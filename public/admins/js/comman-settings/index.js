@@ -19,8 +19,19 @@ $(document).ready(function () {
     ajax: {
       url: url
     },
-    columnDefs: [],
+    columnDefs: [{
+      'targets': [3],
+      'className': 'text-center',
+      'width': '10%'
+    }],
     columns: [{
+      "data": null,
+      "sortable": false,
+      "searchable": false,
+      render: function render(data, type, row, meta) {
+        return meta.row + meta.settings._iDisplayStart + 1;
+      }
+    }, {
       data: function data(row) {
         return row.subject.name;
       },
@@ -30,7 +41,7 @@ $(document).ready(function () {
       name: 'marks'
     }, {
       data: function data(_data) {
-        return "\n                    \n                      <a href=\"#\" class=\"btn btn-danger\" id=\"btnDelete\" data-id=\"".concat(_data.id, "\">Delete</a>");
+        return "\n                    <a href=\"#\" class=\"btn btn-danger edit-btn\" data-id=\"".concat(_data.id, "\">Edit</a>\n                      <a href=\"#\" class=\"btn btn-danger\" id=\"btnDelete\" data-id=\"").concat(_data.id, "\">Delete</a>");
       },
       name: 'id'
     }]
@@ -40,6 +51,35 @@ $(document).ready(function () {
   });
   $('#expenseModal').on('hidden.bs.modal', function () {
     $('#expenseForm')[0].reset();
+  });
+  $(document).on('submit', '#expenseForm', function (e) {
+    e.preventDefault();
+    $.ajax({
+      url: route('university.common-Settings.store'),
+      type: 'post',
+      data: $(this).serialize(),
+      success: function success(result) {
+        displaySuccessMessage('College created successfully.');
+        $('#expenseModal').modal('hide');
+        tablename.DataTable().ajax.reload(null, false);
+      },
+      error: function error(result) {
+        displayErrorMessage(result.responseJSON.message);
+      }
+    });
+  });
+  $(document).on('click', '.edit-btn', function () {
+    var id = $(this).attr('data-id');
+    $.ajax({
+      url: route('university.common-Settings.edit', id),
+      type: 'get',
+      success: function success(result) {
+        $('.subject_id').val(result.data.subject_id);
+        $('#expenseId').val(result.data.id);
+        $('.marks').val(result.data.marks);
+        $('#editModal').modal('show');
+      }
+    });
   });
   $(document).on('click', '#btnDelete', function () {
     var id = $(this).data('id');

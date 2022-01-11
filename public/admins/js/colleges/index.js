@@ -21,6 +21,13 @@ $(document).ready(function () {
     },
     columnDefs: [],
     columns: [{
+      "data": null,
+      "sortable": false,
+      "searchable": false,
+      render: function render(data, type, row, meta) {
+        return meta.row + meta.settings._iDisplayStart + 1;
+      }
+    }, {
       data: 'name',
       name: 'name'
     }, {

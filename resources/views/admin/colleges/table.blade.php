@@ -2,6 +2,7 @@
     <table id="collegeTable" class="table" style="width:100%">
         <thead>
         <tr>
+            <th>ID</th>
             <th>Name</th>
             <th>Email</th>
             <th>Contct NO</th>

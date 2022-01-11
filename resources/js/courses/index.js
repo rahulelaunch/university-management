@@ -4,7 +4,7 @@ $(document).ready(function () {
 
     let tablename = $('#courseTable');
     let url = route('university.courses.index');
-    // let indexUrl;
+  
     tablename.DataTable({
         deferRender: true,
         scroller: true,
@@ -15,9 +15,21 @@ $(document).ready(function () {
             url: url,
         },
         columnDefs: [
-
+            {
+                'targets':[3],
+                'className':'text-center',
+                'width':'5%',          
+            }
         ],
         columns: [
+            {
+                "data": null,
+                "sortable": false,
+                "searchable": false,
+                render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }
+            },
             {
                 data: 'name',
                 name: 'name'
@@ -76,7 +88,7 @@ $(document).ready(function () {
 
     $(document).on('click', '#btnDelete', function (){
         let id = $(this).data('id');
-        deleteItem(route('university.common-Settings.destroy',id), tablename, 'Collage');
+        deleteItem(route('university.courses.destroy',id), tablename, 'Collage');
     });
 
     $(document).on('click','#statusCheckBox', function(){

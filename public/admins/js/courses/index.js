@@ -8,8 +8,7 @@ var __webpack_exports__ = {};
 
 $(document).ready(function () {
   var tablename = $('#courseTable');
-  var url = route('university.courses.index'); // let indexUrl;
-
+  var url = route('university.courses.index');
   tablename.DataTable({
     deferRender: true,
     scroller: true,
@@ -19,8 +18,19 @@ $(document).ready(function () {
     ajax: {
       url: url
     },
-    columnDefs: [],
+    columnDefs: [{
+      'targets': [3],
+      'className': 'text-center',
+      'width': '5%'
+    }],
     columns: [{
+      "data": null,
+      "sortable": false,
+      "searchable": false,
+      render: function render(data, type, row, meta) {
+        return meta.row + meta.settings._iDisplayStart + 1;
+      }
+    }, {
       data: 'name',
       name: 'name'
     }, {
@@ -61,7 +71,7 @@ $(document).ready(function () {
   });
   $(document).on('click', '#btnDelete', function () {
     var id = $(this).data('id');
-    deleteItem(route('university.common-Settings.destroy', id), tablename, 'Collage');
+    deleteItem(route('university.courses.destroy', id), tablename, 'Collage');
   });
   $(document).on('click', '#statusCheckBox', function () {
     var status = $(this).is(':checked') ? 1 : 0;

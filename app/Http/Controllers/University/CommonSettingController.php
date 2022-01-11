@@ -42,7 +42,9 @@ class CommonSettingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        $college = CommonSetting::create($input);
+        return $this->sendResponse($college,'College created successfully.');
     }
 
     /**
@@ -62,9 +64,11 @@ class CommonSettingController extends Controller
      * @param  \App\Models\CommonSetting  $commonSetting
      * @return \Illuminate\Http\Response
      */
-    public function edit(CommonSetting $commonSetting)
+    public function edit($id)
     {
-        //
+        $commonSetting = CommonSetting::findOrFail($id);
+        
+        return $this->sendResponse($commonSetting,'CommonSetting retrieved successfully.');
     }
 
     /**
@@ -85,8 +89,9 @@ class CommonSettingController extends Controller
      * @param  \App\Models\CommonSetting  $commonSetting
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CommonSetting $commonSetting)
+    public function destroy($id)
     {
+        $commonSetting = CommonSetting::findOrFail($id);
         $commonSetting->delete();
         return $this->sendSuccess('Setting deleted successfully');
     }

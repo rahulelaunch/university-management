@@ -2,6 +2,7 @@
     <table id="commonSettingTable" class="table" style="width:100%">
         <thead>
         <tr>
+            <th>ID</th>
             <th>Subject</th>
             <th>Marks</th>
             <th>Action</th>

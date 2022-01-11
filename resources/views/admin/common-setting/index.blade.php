@@ -10,7 +10,7 @@ college list
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                    <button class="btn btn-save btn-outline-primary float-right" id="addExpenses">Add College</button>
+                    <button class="btn btn-save btn-outline-primary float-right" id="addExpenses">Add Setting</button>
                         <h5>Common Setting List</h5>
                         <div class="table-responsive table-hover">
                             @include('admin.common-setting.table')
@@ -28,6 +28,7 @@ college list
 @push('admin-script')
 <script>
     let csrfToken = '{{ csrf_token() }}';
+  
 </script>
 <script src="{{asset('admins/js/comman-settings/index.js')}}"></script>
 @endpush
