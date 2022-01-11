@@ -18,7 +18,7 @@ class UniversitySeeder extends Seeder
     {
         DB::table('universities')->truncate();
 
-        University::insert([    
+        University::insert([
             'name' => 'GTU',
             'email' => 'admin@admin.com',
             'address' => 'Gujarat Technological University
