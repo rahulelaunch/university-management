@@ -4,7 +4,7 @@ namespace App\Http\Requests\University;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ResetPasswordRequest extends FormRequest
+class AddCollegeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,12 @@ class ResetPasswordRequest extends FormRequest
     public function rules()
     {
         return [
-                'oldpassword'=>'required',
-                'newpassword'=>'required|min:8',
-                'confirmpassword'=>'required|same:newpassword'
+            'name'=>'required',
+            'email'=>'required|email',
+            'password'=>'required',
+            'contact_no'=>'required|numeric|min:10',
+            'address'=>'required',
+            'logo'=>'required|mimes:png,jpg,jpeg'
         ];
     }
 }

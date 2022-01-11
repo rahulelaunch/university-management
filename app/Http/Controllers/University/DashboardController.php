@@ -23,7 +23,7 @@ class DashboardController extends Controller
 
     public function index()
     {
-        $colleges = College::where('status', '1')->count();
+        $colleges = $this->dashboardRepo->profile();
         return view('admin.index', compact('colleges'));
     }
 
@@ -34,8 +34,9 @@ class DashboardController extends Controller
 
     public function resetPassword(ResetPasswordRequest $request)
     {
-        $adminData = University::where('id', Auth::user()->id)->first();
-        if (Hash::check($request->oldpassword, $adminData->password)) {
+        $input = $request->all();
+        $data = $this->dashboardRepo->resetPassword($input);
+        if ($data) {
             $newPass = bcrypt($request->newpassword);
             $update = University::where('id', Auth::user()->id)->update(['password' => $newPass]);
             if ($update) {
@@ -57,7 +58,7 @@ class DashboardController extends Controller
     {
         $input = $request->all();
         $updateprofile = $this->dashboardRepo->profileupdate($input);
-
+        
         if ($updateprofile) {
             return response()->json('1');
         } else {

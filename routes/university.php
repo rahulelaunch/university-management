@@ -1,6 +1,8 @@
 <?php
 
 // use App\Http\Controllers\University\CollegeController;
+
+// use App\Http\Controllers\University\CollegeController;
 use App\Http\Controllers\University\DashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,4 +23,5 @@ Route::group(['middleware' => 'auth:university'],function (){
     Route::post('resetPassword', [DashboardController::class,'resetPassword'])->name('resetpassword');
 
     Route::resource('colleges', CollegeController::class);
+    Route::post('change-status/{id}','CollegeController@changeStatus')->name('change-status');
 });

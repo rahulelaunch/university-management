@@ -12,11 +12,12 @@
     <script src="{{ asset('admins/libs/node-waves/waves.min.js') }}"></script>
     <script src="{{ asset('admins/libs/waypoints/lib/jquery.waypoints.min.js') }}"></script>
     <script src="{{ asset('admins/libs/jquery.counterup/jquery.counterup.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 
     <!-- apexcharts -->
-    <script src="{{ asset('admins/libs/apexcharts/apexcharts.min.js') }}"></script>
+    {{-- <script src="{{ asset('admins/libs/apexcharts/apexcharts.min.js') }}"></script> --}}
 
-    <script src="{{ asset('admins/js/pages/dashboard.init.js') }}"></script>
+    {{-- <script src="{{ asset('admins/js/pages/dashboard.init.js') }}"></script> --}}
 
     <script src="{{ asset('admins/js/app.js') }}"></script>
     <!-- selcter js -->

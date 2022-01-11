@@ -6,6 +6,8 @@
             <th>Email</th>
             <th>Contct NO</th>
             <th>Address</th>
+            <th>logo</th>
+            <th>Status</th>
             <th>Action</th>
         </tr>
         </thead>

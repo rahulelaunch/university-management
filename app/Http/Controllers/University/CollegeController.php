@@ -4,6 +4,7 @@ namespace App\Http\Controllers\University;
 
 use App\DataTables\CollegeDataTable;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\University\AddCollegeRequest;
 use App\Models\College;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -41,11 +42,13 @@ class CollegeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AddCollegeRequest $request)
     {
         $input = $request->all();
         $input['password']=Hash::make($request->password);
-        // $image=uploadFile($request->file('logo'),'college/logo');
+        $input['logo']=uploadFile($request->file('logo'),'college/logo');
+        // $input['logo'] = asset('storage/collage/logo' . '/' . $image);
+        $input['status']=1;
         $college = College::create($input);
         return $this->sendResponse($college,'College created successfully.');
     }
@@ -94,5 +97,13 @@ class CollegeController extends Controller
     {
         $college->delete();
         return $this->sendSuccess('College deleted successfully');
+    }
+
+    public function changeStatus(Request $request,$id){
+        $collage = College::findOrFail($id);
+        $status = $request->status;
+        $collage->update(['status' =>$status]);
+
+        return $this->sendSuccess('Status changed successfully.');
     }
 }
