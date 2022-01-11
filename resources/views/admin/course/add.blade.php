@@ -3,7 +3,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="referenceModalLabel">College</h5>
+                <h5 class="modal-title" id="referenceModalLabel">Course</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 
                 </button>
@@ -13,14 +13,10 @@
                     @csrf
                     <div class="form-group">
                     <label>Name:</label>
-                        <input type="text" name="name" class="form-control" placeholder="Enter College name." value="{{old('name')}}" autocomplete="off" />
+                        <input type="text" name="name" class="form-control" placeholder="Enter Course name." value="{{old('name')}}" autocomplete="off" />
                         <span class="error-msg text-danger"></span>
                     </div>
-                    <div class="form-group">
-                    <label>Email:</label>
-                        <input type="email" name="email" class="form-control" placeholder="Enter College Email." value="{{old('email')}}" autocomplete="off" />
-                        <span class="error-msg text-danger"></span>
-                    </div>
+                    
                     
                     <div class="form-group">
                         <div>

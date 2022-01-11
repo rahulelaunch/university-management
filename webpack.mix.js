@@ -21,6 +21,7 @@ const mix = require('laravel-mix');
 mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/colleges/index.js','public/admins/js/colleges/index.js')
     .js('resources/js/students/index.js','public/admins/js/students/index.js')
+    .js('resources/js/courses/index.js','public/admins/js/courses/index.js')
     .js('resources/js/comman-settings/index.js','public/admins/js/comman-settings/index.js')
     .js('resources/js/custom/custom.js','public/js/custom.js')
 

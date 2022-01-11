@@ -58,6 +58,13 @@
                   </li>
 
                   <li>
+                      <a href="{{route('university.courses.index')}}">
+                          <i class="fas fa-users"></i>
+                          <span>Courses</span>
+                      </a>
+                  </li>
+
+                  <li>
                       <a href="{{route('university.students.index')}}">
                           <i class="fas fa-users"></i>
                           <span>Students</span>

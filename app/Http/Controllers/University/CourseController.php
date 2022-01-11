@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\University;
 
-use App\DataTables\CommonSettingDataTable;
+use App\DataTables\CourseDataTable;
 use App\Http\Controllers\Controller;
-use App\Models\CommonSetting;
+use App\Models\Course;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
-class CommonSettingController extends Controller
+class CourseController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,10 +18,10 @@ class CommonSettingController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()){
-            return DataTables::of((new CommonSettingDataTable())->get())->make(true);
+            return DataTables::of((new CourseDataTable())->get())->make(true);
         }
     
-        return view('admin.common-setting.index');
+        return view('admin.course.index');
     }
 
     /**
@@ -42,16 +42,19 @@ class CommonSettingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        $input['status']=1;
+        $course = Course::create($input);
+        return $this->sendResponse($course,'College created successfully.');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\CommonSetting  $commonSetting
+     * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function show(CommonSetting $commonSetting)
+    public function show(Course $course)
     {
         //
     }
@@ -59,10 +62,10 @@ class CommonSettingController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\CommonSetting  $commonSetting
+     * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function edit(CommonSetting $commonSetting)
+    public function edit(Course $course)
     {
         //
     }
@@ -71,10 +74,10 @@ class CommonSettingController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\CommonSetting  $commonSetting
+     * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CommonSetting $commonSetting)
+    public function update(Request $request, Course $course)
     {
         //
     }
@@ -82,12 +85,21 @@ class CommonSettingController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\CommonSetting  $commonSetting
+     * @param  \App\Models\Course  $course
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CommonSetting $commonSetting)
+    public function destroy(Course $course)
     {
-        $commonSetting->delete();
-        return $this->sendSuccess('Setting deleted successfully');
+        $course->delete();
+        return $this->sendSuccess('Course deleted successfully');
+    }
+
+    public function changeStatus(Request $request,$id){
+        
+        $course = Course::findOrFail($id);
+        $status = $request->status;
+        $course->update(['status' =>$status]);
+
+        return $this->sendSuccess('Status changed successfully.');
     }
 }
