@@ -11,18 +11,12 @@
             <div class="modal-body">
                 <form id="expenseForm">
                     @csrf
-                    @php
-                    $course = DB::table('courses')
-                        ->where('status', '1')
-                        ->get();
-                    @endphp
-                
                     <div class="form-group">
                         <label>Course : </label>
                         <select name="course_id" id="course_id" class="form-control">
                             <option value="">Select Subject</option>
                             @foreach ($course as $key => $value)
-                                <option value="{{ $value->id }}">{{ $value->name }}</option>
+                                <option value="{{ $value->id }}">{{ $value->course->name }}</option>
                             @endforeach
                         </select>
                     </div>

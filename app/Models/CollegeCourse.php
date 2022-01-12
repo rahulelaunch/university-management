@@ -20,6 +20,7 @@ class CollegeCourse extends Model
     }
 
     public function college() {
+        
 		return $this->hasOne(College::class, 'id', 'college_id');
 	}
 }

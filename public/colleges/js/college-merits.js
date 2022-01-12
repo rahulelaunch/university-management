@@ -46,7 +46,9 @@ $(document).ready(function () {
       },
       name: 'merits.id'
     }, {
-      data: 'merit',
+      data: function data(row) {
+        return row.merit + '%';
+      },
       name: 'merit'
     }, {
       data: function data(_data) {
@@ -66,9 +68,6 @@ $(document).ready(function () {
     $.ajax({
       url: route('college.collegeMerit-change', id),
       type: 'post',
-      data: {
-        'id': id
-      },
       success: function success(data) {
         $('select[name="round"]').empty();
         $.each(data, function (key, value) {

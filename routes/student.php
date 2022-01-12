@@ -1,5 +1,6 @@
 <?php
 
+// use App\Http\Controllers\Student\AdmissionController;
 use App\Http\Controllers\Student\DashboardController;
 use App\Http\Controllers\Student\StudentController;
 use Illuminate\Support\Facades\Route;
@@ -20,6 +21,8 @@ Route::group(['namespace' => 'Auth'], function(){
     Route::post('profileupdate', [DashboardController::class, 'profileupdate'])->name('profileupdate');
     Route::get('changePassword',[DashboardController::class,'changePassword'])->name('changepassword');
     Route::post('resetPassword',[DashboardController::class,'resetPassword'])->name('resetpassword');
+
+    Route::resource('admissions', AdmissionController::class);
 
 });
 

@@ -16,7 +16,7 @@ $(document).ready(function () {
         },
         columnDefs: [
             {
-                'targets':[3],
+                'targets':[6],
                 'className':'text-center',
                 'width':'20%',          
             }

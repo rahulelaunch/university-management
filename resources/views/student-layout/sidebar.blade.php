@@ -43,7 +43,13 @@
                           <span>Dashboard</span>
                       </a>
                   </li>
-            
+                  <li>
+                    <a href="{{route('student.admissions.create')}}">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Admission</span>
+                    </a>
+                </li>
+                  
                 
               </ul>
           </div>

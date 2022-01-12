@@ -12,8 +12,8 @@ class CollegeMeritRepository implements CollegeMeritInterface
 
     public function collegeMeritStore(array $data)
     {
-        $routeId = MeritRound::where('round_no',$data['round'])->where('course_id',$data['course_id'])->pluck('id')->first();
-        $data['merit_round_id']= $routeId;
+        $routeId = MeritRound::where('round_no',$data['round'])->where('course_id',$data['course_id'])->first();
+        $data['merit_round_id']= $routeId->id;
         $data['college_id']=Auth::guard('college')->id();
         return  CollegeMerit::create($data);
     }  
@@ -26,6 +26,8 @@ class CollegeMeritRepository implements CollegeMeritInterface
     public function collegeMeritUpdate(array $data,$id)
     {
          $course = CollegeMerit::findOrFail($id);
+         $routeId = MeritRound::where('round_no',$data['round'])->where('course_id',$data['course_id'])->first();
+         $data['merit_round_id']= $routeId->id;
          return  $course->update($data);
     }
 

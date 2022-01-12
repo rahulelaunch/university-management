@@ -37,7 +37,9 @@ $(document).ready(function () {
       },
       name: 'subject.name'
     }, {
-      data: 'marks',
+      data: function data(row) {
+        return row.marks + '%';
+      },
       name: 'marks'
     }, {
       data: function data(_data) {

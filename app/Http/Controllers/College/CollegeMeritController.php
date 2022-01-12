@@ -5,9 +5,11 @@ namespace App\Http\Controllers\College;
 use App\DataTables\CollegeMeritDataTable;
 use App\Http\Controllers\Controller;
 use App\Interfaces\CollegeMeritInterface;
+use App\Models\CollegeCourse;
 use App\Models\CollegeMerit;
 use App\Models\MeritRound;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
 
 class CollegeMeritController extends Controller
@@ -29,8 +31,8 @@ class CollegeMeritController extends Controller
         if ($request->ajax()){
             return DataTables::of((new CollegeMeritDataTable())->get())->make(true);
         }
-    
-        return view('college.college-merit.index');
+        $course = CollegeCourse::with('course')->where('college_id', Auth::guard('college')->id())->get();
+        return view('college.college-merit.index',compact('course'));
     }
 
     /**
