@@ -10,18 +10,18 @@ college list
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                    <button class="btn btn-save btn-outline-primary float-right" id="addExpenses">Add Setting</button>
-                        <h5>Common Setting List</h5>
+                    <button class="btn btn-save btn-outline-primary float-right" id="addExpenses">Add Round</button>
+                        <h5>Round List</h5>
                         <div class="table-responsive table-hover">
-                            @include('admin.common-setting.table')
+                            @include('admin.merit-round.table')
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    @include('admin.common-setting.add')
-    @include('admin.common-setting.edit')
+    @include('admin.merit-round.add')
+    @include('admin.merit-round.edit')
 </div>
 
 @endsection
@@ -30,5 +30,5 @@ college list
 <script>
     let csrfToken = '{{ csrf_token() }}';
 </script>
-<script src="{{asset('admins/js/comman-settings/index.js')}}"></script>
+<script src="{{asset('admins/js/merit-rounds/index.js')}}"></script>
 @endpush

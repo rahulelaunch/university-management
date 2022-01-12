@@ -2,9 +2,9 @@
 
 $(document).ready(function () {
 
-    let tablename = $('#commonSettingTable');
-    let url = route('university.common-Settings.index');
-    // let indexUrl;
+    let tablename = $('#collegeCourseTable');
+    let url = route('college.college-courses.index');
+
     tablename.DataTable({
         deferRender: true,
         scroller: true,
@@ -15,11 +15,11 @@ $(document).ready(function () {
             url: url,
         },
         columnDefs: [
-         {
-             'targets':[3],
-             'className':'text-center',
-             'width':'20%', 
-         }
+            {
+                'targets':[3],
+                'className':'text-center',
+                'width':'20%',          
+            }
         ],
         columns: [
             {
@@ -32,19 +32,35 @@ $(document).ready(function () {
             },
             {
                 data:function (row){
-                    return row.subject.name;
+                    return row.college.name;
                 },
-                name:'subject.name'
+                name:'college.name'
             },
             {
-                data: 'marks',
-                name: 'marks'
+                data:function (row){
+                    return row.course.name;
+                },
+                name:'course.name'
             },
+            
+            {
+                data: 'merit_seat',
+                name: 'merit_seat'
+            },
+            {
+                data: 'reserved_seat',
+                name: 'reserved_seat'
+            },
+            {
+                data: 'seat_no',
+                name: 'seat_no'
+            },
+         
           
             {
                 data: function (data) {
                     return `
-                      <a href="#" class="btn btn-primary edit-btn" data-id="${data.id}">Edit</a>
+                    <a href="#" class="btn btn-primary edit-btn" data-id="${data.id}">Edit</a>
                       <a href="#" class="btn btn-danger" id="btnDelete" data-id="${data.id}">Delete</a>`;
                 },
                 name: 'id',
@@ -61,13 +77,11 @@ $(document).ready(function () {
         $('#expenseForm')[0].reset();
     });
 
-
-    
     $(document).on('submit', '#expenseForm', function (e) {
         e.preventDefault();
       
         $.ajax({
-            url: route('university.common-Settings.store'),
+            url: route('college.college-courses.store'),
             type: 'post',
             data: $(this).serialize(),
 
@@ -85,12 +99,13 @@ $(document).ready(function () {
     $(document).on('click', '.edit-btn', function () {
         let id = $(this).attr('data-id');
         $.ajax({
-            url: route('university.common-Settings.edit', id),
+            url: route('college.college-courses.edit', id),
             type: 'get',
             success: function (result) {
-                $('.subject_id').val(result.data.subject_id);
+                $('.course_id').val(result.data.course_id);
                 $('#expenseId').val(result.data.id);
-                $('.marks').val(result.data.marks);
+                $('.merit_seat').val(result.data.merit_seat);
+                $('.reserved_seat').val(result.data.reserved_seat);
                 $('#editModal').modal('show');
             },
         });
@@ -100,7 +115,7 @@ $(document).ready(function () {
         e.preventDefault();
         let id = $('#expenseId').val();
         $.ajax({
-            url: route('university.commonSetting.update', id),
+            url: route('college.collegeCourses.update', id),
             type: 'post',
             data: $(this).serialize(),
             success: function (result) {
@@ -113,10 +128,11 @@ $(document).ready(function () {
             },
         });
     });
+    
 
     $(document).on('click', '#btnDelete', function (){
         let id = $(this).data('id');
-        deleteItem(route('university.common-Settings.destroy',id), tablename, 'Setting');
+        deleteItem(route('college.college-courses.destroy',id), tablename, 'College-Course');
     });
-  
+    
 });

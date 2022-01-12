@@ -1,6 +1,8 @@
 
 <?php
 
+// use App\Http\Controllers\College\CollegeCourseController;
+
 use App\Http\Controllers\College\DashboardController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,5 +22,11 @@ Route::group(['middleware' => 'auth:college'],function (){
     Route::post('profileupdate', [DashboardController::class, 'profileupdate'])->name('profileupdate');
     Route::get('changePassword',[DashboardController::class,'changePassword'])->name('changepassword');
     Route::post('resetPassword',[DashboardController::class,'resetPassword'])->name('resetpassword');
+
+    Route::resource('college-courses', CollegeCourseController::class);
+    Route::post('college-courses/{id}','CollegeCourseController@update')->name('collegeCourses.update');
+    Route::resource('college-merits', CollegeMeritController::class);
+    Route::Post('college-merits-change/{id}','CollegeMeritController@getCourse')->name('collegeMerit-change');
+    Route::post('college-marits/{id}','CollegeMeritController@update')->name('collegeMerit.update');
 
 });

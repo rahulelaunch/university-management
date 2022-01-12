@@ -4,12 +4,20 @@ namespace App\Http\Controllers\University;
 
 use App\DataTables\CommonSettingDataTable;
 use App\Http\Controllers\Controller;
+use App\Interfaces\CommonSettingInterface;
 use App\Models\CommonSetting;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
 class CommonSettingController extends Controller
 {
+
+    protected $settingRepo;
+
+    public function __construct(CommonSettingInterface $settingRepo)
+    {
+        $this->settingRepo = $settingRepo;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -43,7 +51,7 @@ class CommonSettingController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-        $college = CommonSetting::create($input);
+        $college = $this->settingRepo->commonSettingStore($input);
         return $this->sendResponse($college,'College created successfully.');
     }
 
@@ -66,8 +74,7 @@ class CommonSettingController extends Controller
      */
     public function edit($id)
     {
-        $commonSetting = CommonSetting::findOrFail($id);
-        
+        $commonSetting = $this->settingRepo->commonSettingEdit($id); 
         return $this->sendResponse($commonSetting,'CommonSetting retrieved successfully.');
     }
 
@@ -78,9 +85,11 @@ class CommonSettingController extends Controller
      * @param  \App\Models\CommonSetting  $commonSetting
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CommonSetting $commonSetting)
+    public function update(Request $request, $id)
     {
-        //
+        $input = $request->all();
+        $commonSetting = $this->settingRepo->commonSettingUpdate($input,$id); 
+        return $this->sendResponse($commonSetting,'Setting updated successfully.');
     }
 
     /**
@@ -91,8 +100,7 @@ class CommonSettingController extends Controller
      */
     public function destroy($id)
     {
-        $commonSetting = CommonSetting::findOrFail($id);
-        $commonSetting->delete();
+        $this->settingRepo->commonSettingDelete($id); 
         return $this->sendSuccess('Setting deleted successfully');
     }
 }

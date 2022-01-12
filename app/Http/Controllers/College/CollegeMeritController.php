@@ -1,22 +1,23 @@
 <?php
 
-namespace App\Http\Controllers\University;
+namespace App\Http\Controllers\College;
 
-use App\DataTables\CourseDataTable;
+use App\DataTables\CollegeMeritDataTable;
 use App\Http\Controllers\Controller;
-use App\Interfaces\CourseInterface;
-use App\Models\Course;
+use App\Interfaces\CollegeMeritInterface;
+use App\Models\CollegeMerit;
+use App\Models\MeritRound;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 
-class CourseController extends Controller
+class CollegeMeritController extends Controller
 {
 
-    protected $courseRepo;
+    protected $collegeMeritRepo;
 
-    public function __construct(CourseInterface $courseRepo)
+    public function __construct(CollegeMeritInterface $collegeMeritRepo)
     {
-        $this->courseRepo = $courseRepo;
+        $this->collegeMeritRepo = $collegeMeritRepo;
     }
     /**
      * Display a listing of the resource.
@@ -26,9 +27,10 @@ class CourseController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()){
-            return DataTables::of((new CourseDataTable())->get())->make(true);
+            return DataTables::of((new CollegeMeritDataTable())->get())->make(true);
         }
-        return view('admin.course.index');
+    
+        return view('college.college-merit.index');
     }
 
     /**
@@ -50,17 +52,17 @@ class CourseController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-        $course = $this->courseRepo->courseStore($input);
-        return $this->sendResponse($course,'College created successfully.');
+        $college = $this->collegeMeritRepo->collegeMeritStore($input);
+        return $this->sendResponse($college,'College created successfully.');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Course  $course
+     * @param  \App\Models\CollegeMerit  $collegeMerit
      * @return \Illuminate\Http\Response
      */
-    public function show(Course $course)
+    public function show(CollegeMerit $collegeMerit)
     {
         //
     }
@@ -68,45 +70,44 @@ class CourseController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Course  $course
+     * @param  \App\Models\CollegeMerit  $collegeMerit
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $course = $this->courseRepo->courseEdit($id); 
-        return $this->sendResponse($course,'Course retrieved successfully.');
+        $collegeMerit = $this->collegeMeritRepo->collegeMeritEdit($id); 
+        return $this->sendResponse($collegeMerit,'Couser retrieved successfully.');
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Course  $course
+     * @param  \App\Models\CollegeMerit  $collegeMerit
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         $input = $request->all();
-        $course = $this->courseRepo->courseUpdate($input,$id); 
-        return $this->sendResponse($course,'Course updated successfully.');
+        $collegeMerit = $this->collegeMeritRepo->collegeMeritUpdate($input,$id); 
+        return $this->sendResponse($collegeMerit,'Course updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Course  $course
+     * @param  \App\Models\CollegeMerit  $collegeMerit
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $this->courseRepo->courseDelete($id); 
+        $this->collegeMeritRepo->collegeMeritDelete($id); 
         return $this->sendSuccess('Course deleted successfully');
     }
 
-    public function changeStatus(Request $request,$id)
+    public function getCourse(Request $request,$id)
     {
-        $input = $request->all();
-        $this->courseRepo->changeStatus($input,$id); 
-        return $this->sendSuccess('Status changed successfully.');
+        $rounds = MeritRound::where('course_id',$id)->select('round_no')->get();
+        return response()->json($rounds);
     }
 }

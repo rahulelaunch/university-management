@@ -23,6 +23,9 @@ mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/students/index.js','public/admins/js/students/index.js')
     .js('resources/js/courses/index.js','public/admins/js/courses/index.js')
     .js('resources/js/comman-settings/index.js','public/admins/js/comman-settings/index.js')
+    .js('resources/js/merit-rounds/index.js','public/admins/js/merit-rounds/index.js')
+    .js('resources/js/college-courses/index.js','public/colleges/js/college-courses.js')
+    .js('resources/js/college-merits/index.js','public/colleges/js/college-merits.js')
     .js('resources/js/custom/custom.js','public/js/custom.js')
 
     .postCss('resources/css/app.css', 'public/css', [

@@ -65,6 +65,13 @@
                   </li>
 
                   <li>
+                      <a href="{{route('university.merit-rounds.index')}}">
+                          <i class="fas fa-users"></i>
+                          <span>Merit Rounds</span>
+                      </a>
+                  </li>
+
+                  <li>
                       <a href="{{route('university.students.index')}}">
                           <i class="fas fa-users"></i>
                           <span>Students</span>

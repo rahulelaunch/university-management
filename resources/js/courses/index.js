@@ -18,7 +18,7 @@ $(document).ready(function () {
             {
                 'targets':[3],
                 'className':'text-center',
-                'width':'5%',          
+                'width':'20%',          
             }
         ],
         columns: [
@@ -48,7 +48,7 @@ $(document).ready(function () {
             {
                 data: function (data) {
                     return `
-                    
+                    <a href="#" class="btn btn-primary edit-btn" data-id="${data.id}">Edit</a>
                       <a href="#" class="btn btn-danger" id="btnDelete" data-id="${data.id}">Delete</a>`;
                 },
                 name: 'id',
@@ -86,9 +86,40 @@ $(document).ready(function () {
         });
     });
 
+    $(document).on('click', '.edit-btn', function () {
+        let id = $(this).attr('data-id');
+        $.ajax({
+            url: route('university.courses.edit', id),
+            type: 'get',
+            success: function (result) {
+                $('.name').val(result.data.name);
+                $('#expenseId').val(result.data.id);
+                $('#editModal').modal('show');
+            },
+        });
+    });
+
+    $(document).on('submit', '#editForm', function (e) {
+        e.preventDefault();
+        let id = $('#expenseId').val();
+        $.ajax({
+            url: route('university.course.update', id),
+            type: 'post',
+            data: $(this).serialize(),
+            success: function (result) {
+                displaySuccessMessage(result.message);
+                tablename.DataTable().ajax.reload(null, false);
+                $('#editModal').modal('hide');
+            },
+            error: function (result) {
+                displayErrorMessage(result);
+            },
+        });
+    });
+
     $(document).on('click', '#btnDelete', function (){
         let id = $(this).data('id');
-        deleteItem(route('university.courses.destroy',id), tablename, 'Collage');
+        deleteItem(route('university.courses.destroy',id), tablename, 'Course');
     });
 
     $(document).on('click','#statusCheckBox', function(){
@@ -99,7 +130,7 @@ $(document).ready(function () {
             type:'POST',
             data:{'status':status},
             success: function(result){
-                displaySuccessMessage('Collage status changed successfully.');
+                displaySuccessMessage('Course status changed successfully.');
                 tablename.DataTable().ajax.reload(null, false);
             }
         })

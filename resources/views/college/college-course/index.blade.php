@@ -1,4 +1,4 @@
-@extends('admin-layout.master')
+@extends('college-layout.master')
 
 @section('title')
 college list
@@ -10,25 +10,25 @@ college list
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                    <button class="btn btn-save btn-outline-primary float-right" id="addExpenses">Add Setting</button>
-                        <h5>Common Setting List</h5>
+                    <button class="btn btn-save btn-outline-primary float-right" id="addExpenses">Add Course</button>
+                        <h5>Course List</h5>
                         <div class="table-responsive table-hover">
-                            @include('admin.common-setting.table')
+                            @include('college.college-course.table')
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    @include('admin.common-setting.add')
-    @include('admin.common-setting.edit')
+    @include('college.college-course.add')
+    @include('college.college-course.edit')
 </div>
 
 @endsection
 
-@push('admin-script')
+@push('college-script')
 <script>
     let csrfToken = '{{ csrf_token() }}';
 </script>
-<script src="{{asset('admins/js/comman-settings/index.js')}}"></script>
+<script src="{{asset('colleges/js/college-courses.js')}}"></script>
 @endpush

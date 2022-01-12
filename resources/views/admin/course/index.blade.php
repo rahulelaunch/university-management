@@ -10,7 +10,7 @@ college list
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header">
-                    <button class="btn btn-save btn-outline-primary float-right" id="addExpenses">Add College</button>
+                    <button class="btn btn-save btn-outline-primary float-right" id="addExpenses">Add Course</button>
                         <h5>Course List</h5>
                         <div class="table-responsive table-hover">
                             @include('admin.course.table')
@@ -21,6 +21,7 @@ college list
         </div>
     </div>
     @include('admin.course.add')
+    @include('admin.course.edit')
 </div>
 
 @endsection

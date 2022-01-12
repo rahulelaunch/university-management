@@ -27,7 +27,12 @@ Route::group(['middleware' => 'auth:university'],function (){
     Route::resource('students', StudentController::class);
     Route::post('change-status/{id}','CollegeController@changeStatus')->name('change-status');
     Route::resource('common-Settings', CommonSettingController::class);
+    Route::post('common-Settings/{id}','CommonSettingController@update')->name('commonSetting.update');
     Route::resource('courses', CourseController::class);
+    Route::post('courses/{id}','CourseController@update')->name('course.update');
     Route::post('course-change-status/{id}','CourseController@changeStatus')->name('course-change-status');
+    Route::resource('merit-rounds', MeritRoundController::class);
+    Route::post('merit-rounds/{id}','MeritRoundController@update')->name('meritRound.update');
+    Route::post('merit-rounds-status/{id}','MeritRoundController@changeStatus')->name('meritRounds-change-status');
 
 });

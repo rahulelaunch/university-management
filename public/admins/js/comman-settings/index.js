@@ -22,7 +22,7 @@ $(document).ready(function () {
     columnDefs: [{
       'targets': [3],
       'className': 'text-center',
-      'width': '10%'
+      'width': '20%'
     }],
     columns: [{
       "data": null,
@@ -41,7 +41,7 @@ $(document).ready(function () {
       name: 'marks'
     }, {
       data: function data(_data) {
-        return "\n                    <a href=\"#\" class=\"btn btn-danger edit-btn\" data-id=\"".concat(_data.id, "\">Edit</a>\n                      <a href=\"#\" class=\"btn btn-danger\" id=\"btnDelete\" data-id=\"").concat(_data.id, "\">Delete</a>");
+        return "\n                      <a href=\"#\" class=\"btn btn-primary edit-btn\" data-id=\"".concat(_data.id, "\">Edit</a>\n                      <a href=\"#\" class=\"btn btn-danger\" id=\"btnDelete\" data-id=\"").concat(_data.id, "\">Delete</a>");
       },
       name: 'id'
     }]
@@ -59,7 +59,7 @@ $(document).ready(function () {
       type: 'post',
       data: $(this).serialize(),
       success: function success(result) {
-        displaySuccessMessage('College created successfully.');
+        displaySuccessMessage('Setting created successfully.');
         $('#expenseModal').modal('hide');
         tablename.DataTable().ajax.reload(null, false);
       },
@@ -81,9 +81,26 @@ $(document).ready(function () {
       }
     });
   });
+  $(document).on('submit', '#editForm', function (e) {
+    e.preventDefault();
+    var id = $('#expenseId').val();
+    $.ajax({
+      url: route('university.commonSetting.update', id),
+      type: 'post',
+      data: $(this).serialize(),
+      success: function success(result) {
+        displaySuccessMessage(result.message);
+        tablename.DataTable().ajax.reload(null, false);
+        $('#editModal').modal('hide');
+      },
+      error: function error(result) {
+        displayErrorMessage(result);
+      }
+    });
+  });
   $(document).on('click', '#btnDelete', function () {
     var id = $(this).data('id');
-    deleteItem(route('university.common-Settings.destroy', id), tablename, 'Collage');
+    deleteItem(route('university.common-Settings.destroy', id), tablename, 'Setting');
   });
 });
 /******/ })()

@@ -43,7 +43,19 @@
                           <span>Dashboard</span>
                       </a>
                   </li>
-            
+                  <li>
+                      <a href="{{route('college.college-courses.index')}}">
+                          <i class="fas fa-users"></i>
+                          <span>Manege Courses</span>
+                      </a>
+                  </li>
+
+                  <li>
+                      <a href="{{route('college.college-merits.index')}}">
+                          <i class="fas fa-users"></i>
+                          <span>Manege Merit</span>
+                      </a>
+                  </li>
                 
               </ul>
           </div>
